@@ -16,8 +16,10 @@ DataSet deserialized = dss.Deserialize(serialized); // Deserialize («Restore»)
 ```
       
 ### Example
+#### Original DataSet
 ![Example](/dpDataSerializerTests/Datatable.png)
 
+#### Serialized DataSet
 ```javascript
 {
   "CaseSensitive": false,
