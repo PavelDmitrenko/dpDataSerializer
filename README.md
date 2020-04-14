@@ -8,6 +8,8 @@ Serialize ```System.Data.DataTable``` and ```System.Data.DataSet``` objects, pro
 Inastall via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
 
 ### Example
+![Example](/dpDataSerializerTests/Datatable.png)
+
 ```javascript
 {
   "CaseSensitive": false,
@@ -27,8 +29,8 @@ Inastall via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
           "AutoIncrement": false,
           "AutoIncrementSeed": 0,
           "AutoIncrementStep": 1,
-          "Caption": "FirstColumn",
-          "ColumnName": "FirstColumn",
+          "Caption": "StringColumn",
+          "ColumnName": "StringColumn",
           "Prefix": "",
           "DataType": "System.String",
           "DateTimeMode": 3,
@@ -46,27 +48,27 @@ Inastall via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
           "ExtendedProperties": [
             {
               "KeyType": "System.DateTime",
-              "Key": "13.04.2021 12:05:13",
-              "Value": "2020-04-13T12:05:13.2652827+03:00",
+              "Key": "14.04.2021 16:53:47",
+              "Value": "2020-04-14T16:53:47.5120994+03:00",
               "ValueType": "System.DateTime"
             },
             {
               "KeyType": "System.DateTime",
-              "Key": "13.04.2022 12:05:13",
-              "Value": "6ef7363f-d45b-487d-9319-5227c0e5cab4",
+              "Key": "14.04.2022 16:53:47",
+              "Value": "51cb0524-a4df-4814-b585-e9f138064ce2",
               "ValueType": "System.Guid"
-            },
-            {
-              "KeyType": "System.String",
-              "Key": "Prop2",
-              "Value": "string value",
-              "ValueType": "System.String"
             },
             {
               "KeyType": "System.Int32",
               "Key": "2",
               "Value": 1,
               "ValueType": "System.Int32"
+            },
+            {
+              "KeyType": "System.String",
+              "Key": "Prop2",
+              "Value": "string value",
+              "ValueType": "System.String"
             }
           ]
         },
@@ -75,8 +77,8 @@ Inastall via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
           "AutoIncrement": false,
           "AutoIncrementSeed": 0,
           "AutoIncrementStep": 1,
-          "Caption": "SecondColumn",
-          "ColumnName": "SecondColumn",
+          "Caption": "DateTimeColumn",
+          "ColumnName": "DateTimeColumn",
           "Prefix": "",
           "DataType": "System.DateTime",
           "DateTimeMode": 3,
@@ -92,28 +94,140 @@ Inastall via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
           "Container": null,
           "DesignMode": false,
           "ExtendedProperties": []
+        },
+        {
+          "AllowDBNull": true,
+          "AutoIncrement": false,
+          "AutoIncrementSeed": 0,
+          "AutoIncrementStep": 1,
+          "Caption": "GuidColumn",
+          "ColumnName": "GuidColumn",
+          "Prefix": "",
+          "DataType": "System.Guid",
+          "DateTimeMode": 3,
+          "DefaultValue": null,
+          "Expression": "",
+          "MaxLength": -1,
+          "Namespace": "",
+          "Ordinal": 2,
+          "ReadOnly": false,
+          "Unique": false,
+          "ColumnMapping": 1,
+          "Site": null,
+          "Container": null,
+          "DesignMode": false,
+          "ExtendedProperties": []
+        },
+        {
+          "AllowDBNull": true,
+          "AutoIncrement": false,
+          "AutoIncrementSeed": 0,
+          "AutoIncrementStep": 1,
+          "Caption": "EmptyColumn",
+          "ColumnName": "EmptyColumn",
+          "Prefix": "",
+          "DataType": "System.String",
+          "DateTimeMode": 3,
+          "DefaultValue": null,
+          "Expression": "",
+          "MaxLength": -1,
+          "Namespace": "",
+          "Ordinal": 3,
+          "ReadOnly": false,
+          "Unique": false,
+          "ColumnMapping": 1,
+          "Site": null,
+          "Container": null,
+          "DesignMode": false,
+          "ExtendedProperties": []
+        },
+        {
+          "AllowDBNull": true,
+          "AutoIncrement": false,
+          "AutoIncrementSeed": 0,
+          "AutoIncrementStep": 1,
+          "Caption": "LongColumn",
+          "ColumnName": "LongColumn",
+          "Prefix": "",
+          "DataType": "System.Int64",
+          "DateTimeMode": 3,
+          "DefaultValue": null,
+          "Expression": "",
+          "MaxLength": -1,
+          "Namespace": "",
+          "Ordinal": 4,
+          "ReadOnly": false,
+          "Unique": false,
+          "ColumnMapping": 1,
+          "Site": null,
+          "Container": null,
+          "DesignMode": false,
+          "ExtendedProperties": []
+        },
+        {
+          "AllowDBNull": true,
+          "AutoIncrement": false,
+          "AutoIncrementSeed": 0,
+          "AutoIncrementStep": 1,
+          "Caption": "DecimalColumn",
+          "ColumnName": "DecimalColumn",
+          "Prefix": "",
+          "DataType": "System.Decimal",
+          "DateTimeMode": 3,
+          "DefaultValue": null,
+          "Expression": "",
+          "MaxLength": -1,
+          "Namespace": "",
+          "Ordinal": 5,
+          "ReadOnly": false,
+          "Unique": false,
+          "ColumnMapping": 1,
+          "Site": null,
+          "Container": null,
+          "DesignMode": false,
+          "ExtendedProperties": []
         }
       ],
       "Rows": [
         [
           "Cell1: 1",
-          "2020-04-13T12:05:13.2696173"
+          "2020-04-14T16:53:47.5268929",
+          "322c01f7-8f89-459c-88dd-8dd7554535a4",
+          null,
+          10,
+          0.5
         ],
         [
           "Cell1: 2",
-          "2020-04-13T12:05:13.2705371"
+          "2020-04-14T16:53:47.5287357",
+          "d27f369d-e08d-4d39-8f3b-1d862c1b0f2c",
+          null,
+          20,
+          1.0
         ],
         [
           "Cell1: 3",
-          "2020-04-13T12:05:13.2705899"
+          "2020-04-14T16:53:47.5288012",
+          "868fecad-1004-4a54-b9f5-e839b2a80b6d",
+          null,
+          30,
+          1.5
         ],
         [
           "Cell1: 4",
-          "2020-04-13T12:05:13.2706167"
+          "2020-04-14T16:53:47.5288311",
+          "fe19101b-0023-4bef-8cb7-62e1860fcf42",
+          null,
+          40,
+          2.0
         ],
         [
           "Cell1: 5",
-          "2020-04-13T12:05:13.270621"
+          "2020-04-14T16:53:47.528839",
+          "8e27af0c-6b47-46a2-af05-a96bfa2102ce",
+          null,
+          50,
+          2.5
         ]
       ]
     }
