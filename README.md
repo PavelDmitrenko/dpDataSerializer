@@ -1,5 +1,5 @@
 # dpDataSerializer
-Serialize ```System.Data.DataTable``` and ```System.Data.DataSet``` objects, providing the ability to transfer objects and deserialize (restore) them without loss between systems using, for example, RESTfull services.
+Serialize ```System.Data.DataTable``` and ```System.Data.DataSet``` objects, providing the ability to transfer objects and deserialize (restore) them without loss between systems (via, for ex., RESTfull service).
 
 ### Supports
 * ```ExtendedProperties``` data
@@ -7,12 +7,12 @@ Serialize ```System.Data.DataTable``` and ```System.Data.DataSet``` objects, pro
 ### Usage
 * Install via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
 ```csharp
-DataSetStructure dss = new DataSetStructure(sampleDataset); // Construct object from existing DataSet
-string serialized = dss.Serialize(); // Serialize object to string
+DataSet sampleDataset = SampleData(); // System.Data.DataSet
+string serialized = sampleDataset.Serialize(); // Serialize DataSet using extension method
 
-// Transfer string using, for example, RESTfull transport
+// Transfer string using, for ex., HTTP-transport
 
-DataSet deserialized = dss.Deserialize(serialized); // Deserialize string back to System.Data.DataSet
+DataSet deserialized = dss.Deserialize(serialized); // Deserialize («Restore») back to System.Data.DataSet
 ```
       
 ### Example
