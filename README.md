@@ -1,6 +1,13 @@
 # dpDataSerializer
-Lossless Serialize / Deserialize ```DataTable``` and ```DataSet``` objects (in ```System.Data``` namespace) including ```ExtendedProperties``` data, providing the ability to transfer data without loss between systems using, for example, REST-services.
+Serialize ```System.Data.DataTable``` and ```System.Data.DataSet``` objects, providing the ability to transfer objects and deserialize (restore) them without loss between systems using, for example, RESTfull services.
 
+### Supports
+* ```ExtendedProperties``` data
+
+### Usage
+Inastall via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
+
+### Example
 ```javascript
 {
   "CaseSensitive": false,
