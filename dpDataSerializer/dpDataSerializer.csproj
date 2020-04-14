@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Pavel Dmitrenko</Authors>
+    <Company>Pavel Dmitrenko</Company>
+    <Product>dpDataSerializer</Product>
+    <PackageId>dpDataSerializer</PackageId>
+    <Description>Lossless Serialize / Deserialize DataTable and DataSet objects (in System.Data namespace) including ExtendedProperties data, providing the ability to transfer data without loss between systems using, for example, REST-services.</Description>
+    <PackageProjectUrl>https://github.com/PavelDmitrenko/dpDataSerializer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PavelDmitrenko/dpDataSerializer</RepositoryUrl>
+    <Copyright>Pavel Dmitrenko</Copyright>
+    <PackageTags>DataTable DataSet Newtonsoft Serialize Deserialize</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

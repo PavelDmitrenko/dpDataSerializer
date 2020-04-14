@@ -27,7 +27,7 @@ namespace DPDataSerializer
 		public object Site { get; set; }
 		public object Container { get; set; }
 		public bool DesignMode { get; set; }
-		public Dictionary<object, object> ExtendedProperties { get; set; }
+		public ExtendedProperty[] ExtendedProperties { get; set; }
 
 		public Column()
 		{
@@ -57,7 +57,8 @@ namespace DPDataSerializer
 			Container = dataColumn.Container;
 			DesignMode = dataColumn.DesignMode;
 
-			ExtendedProperties = dataColumn.ExtendedProperties.Cast<DictionaryEntry>().ToDictionary(k => k.Key, v=> v.Value);
+			ExtendedProperties = new ExtendedProperty[dataColumn.ExtendedProperties.Count];
+			ExtendedProperties = dataColumn.ExtendedProperties.Cast<DictionaryEntry>().Select(x => new ExtendedProperty(x)).ToArray();
 
 		}
 	}

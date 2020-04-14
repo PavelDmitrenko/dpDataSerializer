@@ -37,10 +37,7 @@ namespace DPDataSerializer
 				ColumnMapping = (MappingType) column.ColumnMapping
 			};
 
-			// TODO ExtendedProperties
-			// TODO Site
-			// TODO Container
-			// TODO DesignMode
+			TypeConverters.PropertyCollectionConvert(column.ExtendedProperties, result.ExtendedProperties);
 
 			return result;
 		}
