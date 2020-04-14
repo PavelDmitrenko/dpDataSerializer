@@ -5,7 +5,7 @@ Serialize ```System.Data.DataTable``` and ```System.Data.DataSet``` objects, pro
 * ```ExtendedProperties``` data
 
 ### Usage
-Inastall via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
+* Install via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
 
 ### Example
 ![Example](/dpDataSerializerTests/Datatable.png)
