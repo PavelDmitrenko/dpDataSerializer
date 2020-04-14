@@ -6,7 +6,15 @@ Serialize ```System.Data.DataTable``` and ```System.Data.DataSet``` objects, pro
 
 ### Usage
 * Install via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
+```csharp
+DataSetStructure dss = new DataSetStructure(sampleDataset); // Construct object from existing DataSet
+string serialized = dss.Serialize(); // Serialize object to string
 
+// Transfer string using, for example, RESTfull transport
+
+DataSet deserialized = dss.Deserialize(serialized); // Deserialize string back to System.Data.DataSet
+```
+      
 ### Example
 ![Example](/dpDataSerializerTests/Datatable.png)
 
