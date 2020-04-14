@@ -7,7 +7,7 @@ Serialize ```System.Data.DataTable``` and ```System.Data.DataSet``` objects, pro
 ### Usage
 * Install via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
 ```csharp
-DataSet sampleDataset = SampleData(); // System.Data.DataSet
+DataSet sampleDataset = SampleData(); // Plain .NET System.Data.DataSet structure
 string serialized = sampleDataset.Serialize(); // Serialize DataSet using extension method
 
 // Transfer string using, for ex., HTTP-transport
