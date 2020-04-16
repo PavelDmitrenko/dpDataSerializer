@@ -12,14 +12,16 @@ namespace DPDataSerializer
 		public object Key { get; set; }
 		public object Value { get; set; }
 		public string ValueType { get; set; }
-
-		public ExtendedProperty(DictionaryEntry entry)
+		public int Index { get; set; }
+		public ExtendedProperty(DictionaryEntry entry, int index)
 		{
 			Key = entry.Key.ToString();
 			Value = entry.Value;
 			
 			KeyType = entry.Key.GetType().FullName;
 			ValueType = entry.Value.GetType().FullName;
+
+			Index = index;
 		}
 		
 		public ExtendedProperty()

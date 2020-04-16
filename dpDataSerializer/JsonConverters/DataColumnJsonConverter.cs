@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace DPDataSerializer
 {
-	public class DataColumnConverter : JsonConverter
+	internal class DataColumnJsonConverter : JsonConverter
 	{
 		public override bool CanConvert(Type objectType)
 		{

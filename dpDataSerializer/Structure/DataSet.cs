@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace DPDataSerializer
 {
@@ -10,7 +12,13 @@ namespace DPDataSerializer
 		public string  Prefix	{ get; set; }
 		public Table[] Tables { get; set; }
 
-		public DataSetStructure(DataSet ds)
+		public DataSet Deserialize(string str)
+		{
+			DataSet ds = JsonConvert.DeserializeObject<DataSet>(str, new DataSetJsonConverter());
+			return ds;
+		}
+
+		internal string Serialize(DataSet ds)
 		{
 			CaseSensitive = ds.CaseSensitive;
 			DataSetName = ds.DataSetName;
@@ -24,6 +32,12 @@ namespace DPDataSerializer
 				Table table = new Table(ds.Tables[0]);
 				Tables[index] = table;
 			}
+
+			Formatting formatting = Formatting.None;
+			if (Debugger.IsAttached)
+				formatting = Formatting.Indented;
+
+			return JsonConvert.SerializeObject(this, new JsonSerializerSettings { Formatting = formatting });
 		}
 	}
 }

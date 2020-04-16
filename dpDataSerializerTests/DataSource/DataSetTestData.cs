@@ -1,29 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
 using System.Globalization;
-using DPDataSerializer;
-using Newtonsoft.Json;
 
-namespace DPDataSerializerTests
+
+namespace NUnitTestProject1.DataSource
 {
-	class Program
+	public class DataSetTestData
 	{
-		static void Main(string[] args)
-		{
-			DataSet ds = SampleData();
-			DataSetStructure dss = new DataSetStructure(ds);
-			var tbl = dss.Tables[0];
-			var tableStr = JsonConvert.SerializeObject(dss, new JsonSerializerSettings { Formatting =  Formatting.Indented });
-			DataSet conv = Dt(tableStr);
-		}
 
-		private static DataSet Dt(string table)
-		{
-			DataSet ds = JsonConvert.DeserializeObject<DataSet>(table, new DataSetConverter());
-			return ds;
-		}
-		
-		private static DataSet SampleData()
+		private static DataSet _GetDataSet1()
 		{
 			DataSet sampleDataSet = new DataSet
 			{
@@ -39,11 +25,11 @@ namespace DPDataSerializerTests
 			sampleDataTable.Columns.Add("LongColumn", typeof(long));
 			sampleDataTable.Columns.Add("DecimalColumn", typeof(decimal));
 
-			column1.ExtendedProperties.Add(2, 1);
-			column1.ExtendedProperties.Add("Prop2", "string value");
-			column1.ExtendedProperties.Add(DateTime.Now.AddYears(1), DateTime.Now);
-			column1.ExtendedProperties.Add(DateTime.Now.AddYears(2), Guid.NewGuid());
-
+			//column1.ExtendedProperties.Add(2, 1);
+			//column1.ExtendedProperties.Add("Prop2", "string value");
+			//column1.ExtendedProperties.Add(DateTime.Now.AddYears(1), DateTime.Now);
+			//column1.ExtendedProperties.Add(DateTime.Now.AddYears(2), Guid.NewGuid());
+	
 			for (int i = 1; i <= 5; i++)
 			{
 				DataRow sampleDataRow = sampleDataTable.NewRow();
@@ -58,6 +44,14 @@ namespace DPDataSerializerTests
 			}
 
 			return sampleDataSet;
+		}
+
+		public static IEnumerable TestCases
+		{
+			get
+			{
+				yield return new NUnit.Framework.TestCaseData(_GetDataSet1());
+			}
 		}
 
 	}

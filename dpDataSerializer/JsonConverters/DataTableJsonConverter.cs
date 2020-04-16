@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace DPDataSerializer
 {
-	public class DataTableConverter : JsonConverter
+	internal class DataTableJsonConverter : JsonConverter
 	{
 		public override bool CanConvert(Type objectType)
 		{
@@ -15,7 +15,7 @@ namespace DPDataSerializer
 		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 		{
 			JObject jObject = JObject.Load(reader);
-			serializer.Converters.Add(new DataColumnConverter());
+			serializer.Converters.Add(new DataColumnJsonConverter());
 
 			DataTable result = new DataTable
 			{

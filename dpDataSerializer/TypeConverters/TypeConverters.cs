@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace DPDataSerializer
@@ -32,7 +33,7 @@ namespace DPDataSerializer
 
 		public static void PropertyCollectionConvert(ExtendedProperty[] properties, PropertyCollection collection)
 		{
-			foreach (ExtendedProperty extendedProperty in properties)
+			foreach (ExtendedProperty extendedProperty in properties.OrderBy(x=>x.Index))
 			{
 				object key = Convert(extendedProperty.Key, extendedProperty.KeyType);
 				object value = Convert(extendedProperty.Value, extendedProperty.ValueType);

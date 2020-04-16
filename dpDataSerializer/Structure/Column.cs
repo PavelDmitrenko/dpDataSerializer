@@ -58,7 +58,13 @@ namespace DPDataSerializer
 			DesignMode = dataColumn.DesignMode;
 
 			ExtendedProperties = new ExtendedProperty[dataColumn.ExtendedProperties.Count];
-			ExtendedProperties = dataColumn.ExtendedProperties.Cast<DictionaryEntry>().Select(x => new ExtendedProperty(x)).ToArray();
+
+			int c = 0;
+			foreach (DictionaryEntry dictionaryEntryitem in dataColumn.ExtendedProperties)
+			{
+				ExtendedProperties[c] = new ExtendedProperty(dictionaryEntryitem, c);
+				c++;
+			}
 
 		}
 	}
