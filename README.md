@@ -7,12 +7,14 @@ Serialize ```System.Data.DataTable``` and ```System.Data.DataSet``` objects, pro
 ### Usage
 * Install via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
 ```csharp
-DataSet sampleDataset = SampleData(); // Plain .NET System.Data.DataSet structure
-string serialized = sampleDataset.Serialize(); // Serialize DataSet using extension method
+// Serialize System.Data.DataSet to json string
+string serialized = originalDataset.Serialize();
+			
+// --> Transfer json string using (e.g.) HTTP transport -->
 
-// Transfer string using, for ex., HTTP-transport
-
-DataSet deserialized = dss.Deserialize(serialized); // Deserialize («Restore») back to System.Data.DataSet
+// Deserialize back to System.Data.DataSet
+DataSetStructure dsc = new DataSetStructure(); 
+DataSet restoredDataSet = dsc.Deserialize(serialized);
 ```
       
 ### Example
