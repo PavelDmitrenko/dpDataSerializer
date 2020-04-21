@@ -7,18 +7,26 @@ namespace DPDataSerializer
 {
 	public static class DataSetExtensions
 	{
-		public static string Serialize(this DataSet ds)
+		public static string ToJSON(this DataSet ds)
 		{
 			DataSetStructure dss = new DataSetStructure();
 			string serialized = dss.Serialize(ds);
 			return serialized;
 		}
 
-		public static DataSet Deserialize(this DataSet ds, string serialized)
+		public static DataSet ToDataSet(this string json)
 		{
 			DataSetStructure dss = new DataSetStructure();
-			ds = dss.Deserialize(serialized);
+			DataSet ds = dss.Deserialize(json);
 			return ds;
 		}
+		
+		public static DataSet DeepClone(this DataSet ds)
+		{
+			DataSetStructure dss = new DataSetStructure();
+			string json = dss.Serialize(ds);
+			return dss.Deserialize(json);
+		}
+
 	}
 }

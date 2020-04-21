@@ -13,7 +13,12 @@ namespace NUnitTestProject1.DataSource
 		{
 			DataSet sampleDataSet = new DataSet
 			{
-				Locale = CultureInfo.InvariantCulture
+				Locale = new CultureInfo("en-GB"),
+				CaseSensitive = true, // Non-default value
+				DataSetName = "TestDataset", 
+				EnforceConstraints = false, // Non-default value
+				Namespace = "TestNamespace", 
+				Prefix = "TestPrefix"
 			};
 
 			DataTable sampleDataTable = sampleDataSet.Tables.Add("SampleData");

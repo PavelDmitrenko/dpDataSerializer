@@ -10,6 +10,8 @@ namespace DPDataSerializer
 		public string DataSetName	{ get; set; }
 		public string Namespace{ get; set; }
 		public string  Prefix	{ get; set; }
+		public string  Locale	{ get; set; }
+		public bool EnforceConstraints { get; set; }
 		public Table[] Tables { get; set; }
 
 		public DataSet Deserialize(string str)
@@ -24,7 +26,8 @@ namespace DPDataSerializer
 			DataSetName = ds.DataSetName;
 			Namespace = ds.Namespace;
 			Prefix = ds.Prefix;
-
+			Locale = ds.Locale.ToString();
+			EnforceConstraints = ds.EnforceConstraints;
 			Tables = new Table[ds.Tables.Count];
 
 			for (var index = 0; index < ds.Tables.Count; index++)

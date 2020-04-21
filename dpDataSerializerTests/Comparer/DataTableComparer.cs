@@ -1,49 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+﻿using System.Data;
 
 namespace dpDataSerializerTests
 {
-	public static class DataTableComparer
+	public static class DataComparer
 	{
-		/// <summary>
-		/// https://stackoverflow.com/a/45620698/2390270
-		/// Compare a source and target datatables and return the row that are the same, different, added, and removed
-		/// </summary>
-		/// <param name="dtOld">DataTable to compare</param>
-		/// <param name="dtNew">DataTable to compare to dtOld</param>
-		/// <param name="dtSame">DataTable that would give you the common rows in both</param>
-		/// <param name="dtDifferences">DataTable that would give you the difference</param>
-		/// <param name="dtAdded">DataTable that would give you the rows added going from dtOld to dtNew</param>
-		/// <param name="dtRemoved">DataTable that would give you the rows removed going from dtOld to dtNew</param>
-		public static void GetTableDiff(DataTable dtOld, DataTable dtNew, ref DataTable dtSame, ref DataTable dtDifferences, ref DataTable dtAdded, ref DataTable dtRemoved)
+		public static bool DataSetsEqual(DataSet ds1, DataSet ds2)
 		{
-			dtAdded = dtOld.Clone();
-			dtAdded.Clear();
-			dtRemoved = dtOld.Clone();
-			dtRemoved.Clear();
-			dtSame = dtOld.Clone();
-			dtSame.Clear();
-			if (dtNew.Rows.Count > 0) dtDifferences.Merge(dtNew.AsEnumerable().Except(dtOld.AsEnumerable(), DataRowComparer.Default).CopyToDataTable<DataRow>());
-			if (dtOld.Rows.Count > 0) dtDifferences.Merge(dtOld.AsEnumerable().Except(dtNew.AsEnumerable(), DataRowComparer.Default).CopyToDataTable<DataRow>());
-			if (dtOld.Rows.Count > 0 && dtNew.Rows.Count > 0) dtSame = dtOld.AsEnumerable().Intersect(dtNew.AsEnumerable(), DataRowComparer.Default).CopyToDataTable<DataRow>();
-			foreach (DataRow row in dtDifferences.Rows)
+			if (ds1.Tables.Count != ds2.Tables.Count)
+				return false;
+
+			if (ds1.Locale.ToString() != ds2.Locale.ToString()
+				|| ds1.CaseSensitive != ds2.CaseSensitive
+				|| ds1.DataSetName != ds2.DataSetName
+				|| ds1.EnforceConstraints != ds2.EnforceConstraints
+				|| ds1.Namespace != ds2.Namespace
+				|| ds1.Prefix != ds2.Prefix
+				) return false;
+
+			for (int i = 0; i < ds1.Tables.Count; i++)
 			{
-				if (dtOld.AsEnumerable().Any(r => Enumerable.SequenceEqual(r.ItemArray, row.ItemArray))
-					&& !dtNew.AsEnumerable().Any(r => Enumerable.SequenceEqual(r.ItemArray, row.ItemArray)))
+				if (!TablesEqual(ds1.Tables[i], ds2.Tables[i]))
+					return false;
+			}
+			return true;
+		}
+
+		public static bool TablesEqual(DataTable tbl1, DataTable tbl2)
+		{
+			if (tbl1.Rows.Count != tbl2.Rows.Count || tbl1.Columns.Count != tbl2.Columns.Count)
+				return false;
+
+
+			for (int i = 0; i < tbl1.Rows.Count; i++)
+			{
+				for (int c = 0; c < tbl1.Columns.Count; c++)
 				{
-					dtRemoved.Rows.Add(row.ItemArray);
-				}
-				else if (dtNew.AsEnumerable().Any(r => Enumerable.SequenceEqual(r.ItemArray, row.ItemArray))
-					&& !dtOld.AsEnumerable().Any(r => Enumerable.SequenceEqual(r.ItemArray, row.ItemArray)))
-				{
-					dtAdded.Rows.Add(row.ItemArray);
+					if (!Equals(tbl1.Rows[i][c], tbl2.Rows[i][c]))
+						return false;
 				}
 			}
-
+			return true;
 		}
+
 	}
 }

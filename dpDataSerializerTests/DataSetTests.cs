@@ -3,7 +3,6 @@ using System.Data;
 using System.Globalization;
 using DPDataSerializer;
 using dpDataSerializerTests;
-using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
 using NUnitTestProject1.DataSource;
 
@@ -13,22 +12,35 @@ namespace NUnitTestProject1
 	public class Tests
 	{
 		[Test, TestCaseSource(typeof(DataSetTestData), nameof(DataSetTestData.TestCases))]
-		public void DatasetTest(DataSet originalDataset)
+		public void SerializationDeserialization(DataSet originalDataset)
 		{
+
 			// Serialize System.Data.DataSet to json string
-			string serialized = originalDataset.Serialize();
+			string jsonString = originalDataset.ToJSON();
 			
 			// --> Transfer json string using (e.g.) HTTP transport -->
 
 			// Deserialize back to System.Data.DataSet
-			DataSetStructure dsc = new DataSetStructure(); 
-			DataSet restoredDataSet = dsc.Deserialize(serialized);
+			DataSet restoredDataSet = jsonString.ToDataSet();
 
-			// Deep compare objects using GregFinzer/Compare-Net-Objects 
-			// TODO
-			Assert.AreEqual(restoredDataSet.Tables.Count, originalDataset.Tables.Count);
+			// Compare
+			bool equals = DataComparer.DataSetsEqual(originalDataset, restoredDataSet);
+			Assert.That(equals, Is.True);
 			
 		}
 
+		[Test, TestCaseSource(typeof(DataSetTestData), nameof(DataSetTestData.TestCases))]
+		public void DeepClone(DataSet originalDataset)
+		{
+			DataSet cloned = originalDataset.DeepClone();
+			
+			// Compare
+			bool deepEquals = DataComparer.DataSetsEqual(originalDataset, cloned);
+			bool referenceEquals = originalDataset == cloned;
+
+			Assert.That(deepEquals, Is.True);
+			Assert.That(referenceEquals, Is.False);
+			
+		}
 	}
 }

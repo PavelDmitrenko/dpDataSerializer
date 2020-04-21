@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -22,7 +23,9 @@ namespace DPDataSerializer
 				CaseSensitive = jObject[nameof(DataSet.CaseSensitive)].ToObject<bool>(),
 				DataSetName = jObject[nameof(DataSet.DataSetName)].ToObject<string>(),
 				Namespace = jObject[nameof(DataSet.Namespace)].ToObject<string>(),
-				Prefix = jObject[nameof(DataSet.Prefix)].ToObject<string>()
+				Prefix = jObject[nameof(DataSet.Prefix)].ToObject<string>(),
+				Locale =  new CultureInfo(jObject[nameof(DataSet.Locale)].ToObject<string>()),
+				EnforceConstraints = jObject[nameof(DataSet.EnforceConstraints)].ToObject<bool>()
 			};
 
 			DataTable[] tables = jObject[nameof(DataSet.Tables)].ToObject<DataTable[]>(serializer);
