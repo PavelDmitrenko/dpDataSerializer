@@ -3,7 +3,8 @@
 * DeepClone ```System.Data.DataTable``` and ```System.Data.DataSet``` objects
 
 ### Usage
-* Install via [nuget](https://www.nuget.org/packages/dpDataSerializer/)
+* Install via [nuget](https://www.nuget.org/packages/dpDataSerializer/)<br>
+```Install-Package dpDataSerializer```
 
 #### Serialize / Deserialize
 ```csharp
